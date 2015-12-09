@@ -1,12 +1,26 @@
 'use strict';
 /* global document, window */
 /* exported straube */
+
+var screenSize = document.body.offsetWidth;
 var straube = function() {
   var STRABE_CLASS = 'straube';
   var STRABE_WRAPPER_CLASS = 'straube-wrapper';
-  var elements = document.querySelectorAll('.' + STRABE_CLASS);
+  var elements = document.querySelectorAll('.' + STRABE_CLASS + '-test');
   var wrapperElement;
   var securityAlert = 500;
+
+  var isSmaller = (document.body.offsetWidth - screenSize) < 0;
+  screenSize = document.body.offsetWidth;
+
+  var bigDelta = 1;
+  var smallDelta = 0.1;
+
+  if (isSmaller) {
+    bigDelta = 0.1;
+    smallDelta = 1;
+  }
+
   Array.prototype.slice.call(elements).forEach(function(element){
     securityAlert = 1500;
     element.style.whiteSpace = 'pre';
@@ -25,13 +39,13 @@ var straube = function() {
     ) + 'px';
 
     while (element.offsetWidth < wrapperWidth && --securityAlert) {
-      element.style.fontSize = parseFloat(element.style.fontSize, 10) + 1 +
-                               'px';
+      element.style.fontSize = parseFloat(element.style.fontSize, 10) +
+                               bigDelta + 'px';
     }
 
     while (element.offsetWidth > wrapperWidth) {
-      element.style.fontSize = parseFloat(element.style.fontSize, 10) - 0.1 +
-                               'px';
+      element.style.fontSize = parseFloat(element.style.fontSize, 10) -
+                               smallDelta + 'px';
     }
 
     if (securityAlert === 0) {
@@ -39,5 +53,12 @@ var straube = function() {
     }
   });
 };
+
+var resizeInterval;
+var resizeTimeout = 100;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeInterval);
+  resizeInterval = setTimeout(straube, resizeTimeout);
+});
 
 straube();
