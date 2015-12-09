@@ -1,0 +1,17 @@
+{
+  "name": "straube",
+  "version": "0.0.1",
+  "author": "Michał Budzyński <michal@virtualdesign.pl>",
+  "repository": "git@github.com:michalbe/straube.git",
+  "scripts": {
+    "lint": "node node_modules/jshint/bin/jshint ."
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ],
+  "devDependencies": {
+    "precommit-hook": "^3.0.0"
+  }
+}
