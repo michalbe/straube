@@ -1,3 +1,7 @@
 .straube-wrapper {
-  border: 2px solid #f0f;
+  display:block;
+}
+
+span {
+  border: 1px solid #f0f;
 }
