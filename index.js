@@ -40,4 +40,11 @@ var straube = function() {
   });
 };
 
+var resizeInterval;
+var resizeTimeout = 100;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeInterval);
+  resizeInterval = setTimeout(straube, resizeTimeout);
+});
+
 straube();
