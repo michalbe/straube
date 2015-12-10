@@ -12,6 +12,7 @@
     "test"
   ],
   "devDependencies": {
+    "jshint": "^2.9.1-rc1",
     "precommit-hook": "^3.0.0"
   }
 }
