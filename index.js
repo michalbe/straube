@@ -4,7 +4,7 @@
 var straube = function() {
   var STRABE_CLASS = 'straube';
   var STRABE_WRAPPER_CLASS = 'straube-wrapper';
-  var elements = [document.querySelectorAll('.' + STRABE_CLASS)[5]];
+  var elements = document.querySelectorAll('.' + STRABE_CLASS);
   var wrapperElement;
   var securityAlert = 500;
   Array.prototype.slice.call(elements).forEach(function(element){
@@ -25,7 +25,13 @@ var straube = function() {
     ) + 'px';
 
     while (element.offsetWidth < wrapperWidth && --securityAlert) {
-      element.style.fontSize = parseFloat(element.style.fontSize, 10) + 1 + 'px';
+      element.style.fontSize = parseFloat(element.style.fontSize, 10) + 1 +
+                               'px';
+    }
+
+    while (element.offsetWidth > wrapperWidth) {
+      element.style.fontSize = parseFloat(element.style.fontSize, 10) - 0.1 +
+                               'px';
     }
 
     if (securityAlert === 0) {
