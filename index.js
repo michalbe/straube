@@ -13,12 +13,12 @@ var straube = function() {
   var isSmaller = (document.body.offsetWidth - screenSize) < 0;
   screenSize = document.body.offsetWidth;
 
-  var bigDelta = 1;
-  var smallDelta = 0.1;
+  var incrementDelta = 1;
+  var decrementDelta = 0.1;
 
   if (isSmaller) {
-    bigDelta = 0.1;
-    smallDelta = 1;
+    incrementDelta = 0.1;
+    decrementDelta = 1;
   }
 
   Array.prototype.slice.call(elements).forEach(function(element){
@@ -44,12 +44,12 @@ var straube = function() {
 
     while (element.offsetWidth < wrapperWidth && --securityAlert) {
       element.style.fontSize = parseFloat(element.style.fontSize, 10) +
-                               bigDelta + 'px';
+                               incrementDelta + 'px';
     }
 
     while (element.offsetWidth > wrapperWidth && securityAlert > 0) {
       element.style.fontSize = parseFloat(element.style.fontSize, 10) -
-                               smallDelta + 'px';
+                               decrementDelta + 'px';
     }
 
     if (securityAlert === 0) {
