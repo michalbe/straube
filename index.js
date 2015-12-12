@@ -10,10 +10,9 @@ var straube = (function() {
   );
   var firstRun = true;
   var wrapperElement;
-  var securityAlert = 500;
 
   var resizeInterval;
-  var resizeTimeout = 100;
+  var resizeTimeout = 30;
   window.addEventListener('resize', function() {
     clearTimeout(resizeInterval);
     resizeInterval = setTimeout(straube, resizeTimeout);
@@ -34,7 +33,6 @@ var straube = (function() {
     }
 
     elements.forEach(function(element) {
-      securityAlert = 1500;
       if (element.textContent.replace(/\s+/g, '').length === 0) {
         return;
       }
@@ -56,18 +54,14 @@ var straube = (function() {
         window.getComputedStyle(element, null).getPropertyValue('font-size')
       ) + 'px';
 
-      while (element.offsetWidth < wrapperWidth && --securityAlert) {
+      while (element.offsetWidth < wrapperWidth) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) +
           incrementDelta + 'px';
       }
 
-      while (element.offsetWidth > wrapperWidth && securityAlert > 0) {
+      while (element.offsetWidth > wrapperWidth> 0) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) -
           decrementDelta + 'px';
-      }
-
-      if (securityAlert === 0) {
-        alert('dupa');
       }
     });
     if (firstRun) {
