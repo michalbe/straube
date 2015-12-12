@@ -1,3 +1,7 @@
+body {
+  padding: 2%;
+}
+
 .straube-wrapper {
   display:block;
 }
@@ -31,7 +35,6 @@
 .straube-row {
   clear: both;
   display: block;
-  margin: 0 1% 0 1%;
 }
 
 .straube-row .straube-big-1:last-child,
