@@ -3,35 +3,75 @@
 }
 
 .straube-big-1 {
-  width: 100%
+  width: 100%;
+  margin-top: 2%;
 }
 
 .straube-big-2 {
   float: left;
   width: 48%;
   margin-right: 3%;
+  margin-top: 2%;
 }
 
 .straube-big-3 {
   float: left;
   width: 31%;
   margin-right: 2.5%;
+  margin-top: 2%;
 }
 
 .straube-big-4 {
   float: left;
   width: 23%;
   margin-right: 2%;
+  margin-top: 2%;
 }
 
 .straube-row {
   clear: both;
   display: block;
+  margin: 0 1% 0 1%;
 }
 
 .straube-row .straube-big-1:last-child,
-.straube-row .straube-big-2:last-child,
-.straube-row .straube-big-3:last-child,
-.straube-row .straube-big-4:last-child {
+.straube-row .straube-big-2:nth-child(2n),
+.straube-row .straube-big-3:nth-child(3n),
+.straube-row .straube-big-4:nth-child(4n) {
   margin-right: 0;
+}
+
+@media (max-width: 699px) {
+  .straube-small-1 {
+    width: 100%;
+    margin-top: 2%;
+  }
+
+  .straube-small-2 {
+    float: left;
+    width: 48%;
+    margin-right: 3%;
+    margin-top: 2%;
+  }
+
+  .straube-small-3 {
+    float: left;
+    width: 31%;
+    margin-right: 2.5%;
+    margin-top: 2%;
+  }
+
+  .straube-small-4 {
+    float: left;
+    width: 23%;
+    margin-right: 2%;
+    margin-top: 2%;
+  }
+
+  .straube-row .straube-small-1:last-child,
+  .straube-row .straube-small-2:nth-child(2n),
+  .straube-row .straube-small-3:nth-child(3n),
+  .straube-row .straube-small-4:nth-child(4n) {
+    margin-right: 0;
+  }
 }
