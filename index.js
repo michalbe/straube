@@ -4,9 +4,9 @@
 
 var screenSize = document.body.offsetWidth;
 var straube = function() {
-  var STRABE_CLASS = 'straube';
-  var STRABE_WRAPPER_CLASS = 'straube-wrapper';
-  var elements = document.querySelectorAll('.' + STRABE_CLASS);
+  var STRAUBE_CLASS = 'straube';
+  var STRAUBE_WRAPPER_CLASS = 'straube-wrapper';
+  var elements = document.querySelectorAll('.' + STRAUBE_CLASS);
   var wrapperElement;
   var securityAlert = 500;
 
@@ -29,7 +29,7 @@ var straube = function() {
 
     element.style.whiteSpace = 'pre';
     wrapperElement = document.createElement('span');
-    wrapperElement.classList.add(STRABE_WRAPPER_CLASS);
+    wrapperElement.classList.add(STRAUBE_WRAPPER_CLASS);
     wrapperElement.innerHTML = element.outerHTML;
     //element.outerHTML = wrapperElement.outerHTML;
 
