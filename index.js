@@ -23,6 +23,10 @@ var straube = function() {
 
   Array.prototype.slice.call(elements).forEach(function(element){
     securityAlert = 1500;
+    if (element.innerHTML.length === 0) {
+      return;
+    }
+
     element.style.whiteSpace = 'pre';
     wrapperElement = document.createElement('span');
     wrapperElement.classList.add(STRABE_WRAPPER_CLASS);
@@ -43,7 +47,7 @@ var straube = function() {
                                bigDelta + 'px';
     }
 
-    while (element.offsetWidth > wrapperWidth) {
+    while (element.offsetWidth > wrapperWidth && securityAlert > 0) {
       element.style.fontSize = parseFloat(element.style.fontSize, 10) -
                                smallDelta + 'px';
     }
