@@ -67,8 +67,9 @@ var straube = (function() {
         return;
       }
 
-      // ... and hasn't been wrapped in Straube container...
+      // ... and hasn't been wrapped in Straube container yet...
       if (!element.parentNode.classList.contains(STRAUBE_WRAPPER_CLASS)) {
+        // ...change the way spaces whitechars will be handled...
         element.style.whiteSpace = 'pre';
         wrapperElement = document.createElement('span');
         wrapperElement.classList.add(STRAUBE_WRAPPER_CLASS);
