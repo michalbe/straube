@@ -118,19 +118,31 @@ var straube = (function() {
           incrementDelta + 'px';
       }
 
-      //
+      // If the wrapper is smaller than the element, decrease the font size.
+      // In most cases (on startup and while the screen size is
+      // 'growing' [again...]) this means we have already make the font bigger
+      // than the container, so it needs to be shrinked by 0.1 to be exactly
+      // like the wrapper. If the screen size is decreasing, then the font is
+      // shrinked by 1. Those factors are already explained and defined above.
       while (element.offsetWidth > wrapperWidth) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) -
           decrementDelta + 'px';
       }
     });
+
+    // This part is a little embarassing, but I'll fix this in my next
+    // freetime window.
+    // If it's the first time straube() function is called...
     if (firstRun) {
+      // ... get all the elements and cache them for the future. This will make
+      // the lib faster on screen resize.
       elements = Array.prototype.slice.call(
         document.querySelectorAll('.' + STRAUBE_CLASS)
       );
       firstRun = false;
     }
 
+    // Show everything
     document.body.style.visibility = '';
   };
 })();
