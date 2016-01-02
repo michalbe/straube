@@ -119,7 +119,7 @@ var straube = (function() {
       }
 
       //
-      while (element.offsetWidth > wrapperWidth> 0) {
+      while (element.offsetWidth > wrapperWidth) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) -
           decrementDelta + 'px';
       }
