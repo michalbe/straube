@@ -108,12 +108,17 @@ var straube = (function() {
         window.getComputedStyle(element, null).getPropertyValue('font-size')
       ) + 'px';
 
-      //
+      // If the element is not filling whole wrapper...
       while (element.offsetWidth < wrapperWidth) {
+        // ...increment it's font size. The element will 'grow' (it's probably
+        // not the best English word in here but it's 4:50AM and I had my
+        // last cigarette around midnight) together with the font inside till
+        // it will became bigger than it's wrapper
         element.style.fontSize = parseFloat(element.style.fontSize, 10) +
           incrementDelta + 'px';
       }
 
+      //
       while (element.offsetWidth > wrapperWidth> 0) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) -
           decrementDelta + 'px';
