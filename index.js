@@ -84,13 +84,22 @@ var straube = (function() {
         // now inside. It's not actually the same node, it's cloned, but it's
         // doing the work since STRAUBE is ment to work mostly with text.
         element.parentNode.replaceChild(wrapperElement, element);
-        // Now our element is the whole wrapper, not only the one inside it.
+        // Now our element is still the element inside the wrapper,
+        // but since it was cloned and replaced we need to take the
+        // reference again. This whole process is expensive, but we do it
+        // just once, at the initial rendering.
         element = wrapperElement.children[0];
 
       }
 
-      // calculations
+      // Here comes the magic.
+      // Take the width of the element's parent node (the Straube wrapper)
       var wrapperWidth = element.parentNode.offsetWidth;
+      // Set it's CSS fontSize explicitly as an inline style, even if it's
+      // set somewhere else. In this case we'll get the size of the fonts
+      // set in external stylesheets, etc. .getComputedStyle() is expensive,
+      // so after it will be set as an inline style, we gain easy and cheap
+      // access to it later.
       element.style.fontSize = parseFloat(
         window.getComputedStyle(element, null).getPropertyValue('font-size')
       ) + 'px';
