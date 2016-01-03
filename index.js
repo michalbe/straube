@@ -49,12 +49,12 @@ var straube = (function() {
     // Then remember the screen size for the next resize event.
     screenSize = document.body.offsetWidth;
 
-    // Steps which we'll use to increment/decrement size of the font
+    // Steps we'll use to increment/decrement size of the font
     var incrementDelta = 1;
     var decrementDelta = 0.1;
 
     // Same for making the resolution smaller than it was before
-    // the event
+    // the event occurs
     if (isSmaller) {
       incrementDelta = 0.1;
       decrementDelta = 1;
@@ -71,12 +71,22 @@ var straube = (function() {
       if (!element.parentNode.classList.contains(STRAUBE_WRAPPER_CLASS)) {
         // ...change the way spaces whitechars will be handled...
         element.style.whiteSpace = 'pre';
+        // ...wrap it in Straube container...
         wrapperElement = document.createElement('span');
+        // ...that from definition takes as much place in the document
+        // as possible. To do so let's create a new span, give it
+        // proper classname...
         wrapperElement.classList.add(STRAUBE_WRAPPER_CLASS);
+        // ...insert WHOLE (outerHTML) computed node inside the newly
+        // created...
         wrapperElement.innerHTML = element.outerHTML;
-
+        // ...and insert this new container in place of the one that's
+        // now inside. It's not actually the same node, it's cloned, but it's
+        // doing the work since STRAUBE is ment to work mostly with text.
         element.parentNode.replaceChild(wrapperElement, element);
+        // Now our element is the whole wrapper, not only the one inside it.
         element = wrapperElement.children[0];
+
       }
 
       // calculations
