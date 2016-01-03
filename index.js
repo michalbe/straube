@@ -92,7 +92,9 @@ var straube = (function() {
 
       }
 
+      // ---------------------
       // Here comes the magic.
+      // ---------------------
       // Take the width of the element's parent node (the Straube wrapper)
       var wrapperWidth = element.parentNode.offsetWidth;
       // Set it's CSS fontSize explicitly as an inline style, even if it's
@@ -100,10 +102,13 @@ var straube = (function() {
       // set in external stylesheets, etc. .getComputedStyle() is expensive,
       // so after it will be set as an inline style, we gain easy and cheap
       // access to it later.
+      // XXX: This probably can be moved above to the wrapping part, so
+      // it'll be computed just once and should be faster
       element.style.fontSize = parseFloat(
         window.getComputedStyle(element, null).getPropertyValue('font-size')
       ) + 'px';
 
+      //
       while (element.offsetWidth < wrapperWidth) {
         element.style.fontSize = parseFloat(element.style.fontSize, 10) +
           incrementDelta + 'px';
