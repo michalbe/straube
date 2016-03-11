@@ -2,6 +2,7 @@
 /* global document, window */
 /* exported straube */
 /* author Michał Budzyński <michal@virtualdesign.pl> */
+
 window.onload = function() {
   var straube = (function() {
     // Remember initial screen size. It's needed in calculating if the
@@ -12,9 +13,7 @@ window.onload = function() {
     var STRAUBE_WRAPPER_CLASS = 'straube-wrapper';
 
     // Initial array of elements with given class
-    var elements = Array.prototype.slice.call(
-      document.querySelectorAll('.' + STRAUBE_CLASS)
-    );
+    var elements = [];
 
     // Elements will be cached after the first function call so let's
     // set a flag in here.
@@ -60,8 +59,20 @@ window.onload = function() {
         decrementDelta = 1;
       }
 
+      // This part is a little embarassing, but I'll fix this in my next
+      // freetime window.
+      // If it's the first time straube() function is called...
+      if (firstRun) {
+        // ... get all the elements and cache them for the future. This will
+        // make the lib faster on screen resize.
+        elements = Array.prototype.slice.call(
+          document.querySelectorAll('.' + STRAUBE_CLASS)
+        );
+        firstRun = false;
+      }
+
       // The core of the app. For each element...
-      elements.forEach(function(element) {
+      elements.forEach(function(element, index) {
         // ... thats not empty...
         if (element.textContent.replace(/\s+/g, '').length === 0) {
           return;
@@ -89,7 +100,7 @@ window.onload = function() {
           // reference again. This whole process is expensive, but we do it
           // just once, at the initial rendering.
           element = wrapperElement.children[0];
-
+          elements[index] = element;
         }
 
         // ---------------------
@@ -129,18 +140,6 @@ window.onload = function() {
             decrementDelta + 'px';
         }
       });
-
-      // This part is a little embarassing, but I'll fix this in my next
-      // freetime window.
-      // If it's the first time straube() function is called...
-      if (firstRun) {
-        // ... get all the elements and cache them for the future. This will
-        // make the lib faster on screen resize.
-        elements = Array.prototype.slice.call(
-          document.querySelectorAll('.' + STRAUBE_CLASS)
-        );
-        firstRun = false;
-      }
 
       // Show everything
       document.body.style.visibility = '';
